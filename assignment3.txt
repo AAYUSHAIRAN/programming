@@ -1,0 +1,41 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main()
+{
+    int d,m,n,num,i;
+    
+    cout<<"THE DISTANCE BETWEEN TWO CITIES:";
+    cin>>d;
+    cout<<"THE MAXIMUM DISTANCE CAR CAN TRAVEL:";
+    cin>>m;
+    cout<<"THE NUMBER OF STATIONS BETWEEN TWO CITIES:";
+    cin>>n;
+    
+    vector<int> integers;
+    integers.push_back(0);
+    for(i=0;i<n;++i)
+    {
+        cout<<"station "<<i+1<<" distances from home city:";
+        cin>>num;
+        integers.push_back(num);
+    }
+    integers.push_back(d);
+    num=0;
+    int left=m;
+    
+    cout<<"refills:"<<endl;
+    for(i=1;i<=n;++i)
+    {
+        left= left -(integers[i] - integers[i-1]);
+        if(left < (integers[i+1] - integers[i]))
+        {
+            left=left+m;
+            cout<<"refill at station:"<<i<<endl;
+            ++num;
+        }
+    }
+    cout<<"thus total refill:"<<num<<endl;
+    integers.clear();
+}
